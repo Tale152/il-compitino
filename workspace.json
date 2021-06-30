@@ -1,6 +1,108 @@
 {
   "version": 2,
   "projects": {
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": ["apps/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/api"],
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "dtos": {
+      "root": "libs/dtos",
+      "sourceRoot": "libs/dtos/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/dtos/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/dtos"],
+          "options": {
+            "jestConfig": "libs/dtos/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "server-in-memory-store": {
+      "root": "libs/server/in-memory-store",
+      "sourceRoot": "libs/server/in-memory-store/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/workspace:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/server/in-memory-store",
+            "main": "libs/server/in-memory-store/src/index.ts",
+            "tsConfig": "libs/server/in-memory-store/tsconfig.lib.json",
+            "assets": ["libs/server/in-memory-store/*.md"]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/server/in-memory-store/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/server/in-memory-store"],
+          "options": {
+            "jestConfig": "libs/server/in-memory-store/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "web-ui": {
       "root": "apps/web-ui",
       "sourceRoot": "apps/web-ui/src",
@@ -49,7 +151,8 @@
           "executor": "@nrwl/web:dev-server",
           "options": {
             "buildTarget": "web-ui:build",
-            "hmr": true
+            "hmr": true,
+            "proxyConfig": "apps/web-ui/proxy.conf.json"
           },
           "configurations": {
             "production": {

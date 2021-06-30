@@ -27,6 +27,15 @@
     ]
   },
   "projects": {
+    "api": {
+      "tags": []
+    },
+    "dtos": {
+      "tags": []
+    },
+    "server-in-memory-store": {
+      "tags": []
+    },
     "web-ui": {
       "tags": []
     },

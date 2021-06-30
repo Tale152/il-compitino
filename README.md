@@ -1,94 +1,38 @@
+# Il compitino
 
+Questo progetto e' stato generato utilizzando [Nx](https://nx.dev).
 
-# FTask
+Lo scopo e' creare un ambiente dove sviluppare una serie di funzionalita' al fine di validare le competenze tecniche in diversi punti dello stack e su diverse tecnologie.
 
-This project was generated using [Nx](https://nx.dev).
+## Il progetto
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+Il progetto immaginario e' un applicazione per un azienda di logistica che ha la necessita' di gestire magazzini e merce permettendo il tracciamento degli stessi.
+Sara' possibile creare nuovi magazzini e prodotti dando la possibilita' di indicare quale prodotto si trova in quale magazzino
+Si potra' anche muovere un prodotto da magazzino a magazzino.
+Ogni pordotto ha una serie di tipologie.
 
-🔎 **Smart, Extensible Build Framework**
+## Regole
 
-## Adding capabilities to your workspace
+E' possibile installare qualunque nuova dipendenza se lo si ritiene necessario. Questo progetto ha gia presenti `react-router-dom` e `framer-motion` due librerie che vengono utilizzate come standard nei nostri progetti.
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+## Sviluppo
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+Per avviare il progetto, `yarn start` fara' avviare sia la parte server che quella, vai a http://localhost:4200.
+Ovviamente e' possibile usare liberamente la cli di NX per generare componenti e avviare i progetti come meglio si crede.
 
-Below are our core plugins:
+## Task Frontend
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+Il progetto in cui sviluppare e' `web-ui`
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+- Sviluppare una pagina che mostra la lista dei magazzini
+- Sviluppare una pagina che permette di creare un nuovo magazzino
+- Sviluppare una pagina che mostra la lista degli elementi
+- Dare la possibilita' di eliminare elementi
+- Sviluppare una pagina che permette di vedere il dettaglio di un elemento e se ed a quale magazzino e' assegnato dando la possibilita' di navigare al dettaglio di quel magazzino
+- Sviluppare una pagina che permette di vedere il dettaglio di un magazzino e permette di aggiungere elementi, creandone di nuovi o muovendoli da quelli gia presenti in altri magazzini
 
-## Generate an application
+## Task Backend
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+Il progetto in cui sviluppare e' `api`
 
-> You can use any of the plugins above to generate applications as well.
-
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@f-task/mylib`.
-
-## Development server
-
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+TODO
