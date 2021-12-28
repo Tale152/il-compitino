@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "api": {
+      "tags": [],
       "root": "apps/api",
       "sourceRoot": "apps/api/src",
       "projectType": "application",
@@ -39,7 +40,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/api/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -52,6 +54,7 @@
       }
     },
     "dtos": {
+      "tags": [],
       "root": "libs/dtos",
       "sourceRoot": "libs/dtos/src",
       "projectType": "library",
@@ -60,7 +63,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/dtos/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -73,12 +77,13 @@
       }
     },
     "server-in-memory-store": {
+      "tags": [],
       "root": "libs/server/in-memory-store",
       "sourceRoot": "libs/server/in-memory-store/src",
       "projectType": "library",
       "targets": {
         "build": {
-          "executor": "@nrwl/workspace:tsc",
+          "executor": "@nrwl/js:tsc",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/libs/server/in-memory-store",
@@ -91,7 +96,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/server/in-memory-store/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -104,12 +110,13 @@
       }
     },
     "web-ui": {
+      "tags": [],
       "root": "apps/web-ui",
       "sourceRoot": "apps/web-ui/src",
       "projectType": "application",
       "targets": {
         "build": {
-          "executor": "@nrwl/web:build",
+          "executor": "@nrwl/web:webpack",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/web-ui",
@@ -165,7 +172,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/web-ui/**/*.{ts,tsx,js,jsx}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -178,6 +186,8 @@
       }
     },
     "web-ui-e2e": {
+      "tags": [],
+      "implicitDependencies": ["web-ui"],
       "root": "apps/web-ui-e2e",
       "sourceRoot": "apps/web-ui-e2e/src",
       "projectType": "application",
@@ -199,31 +209,10 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/web-ui-e2e/**/*.{js,ts}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "style": "styled-components",
-        "linter": "eslint",
-        "strict": true,
-        "babel": true
-      },
-      "component": {
-        "style": "styled-components"
-      },
-      "library": {
-        "style": "styled-components",
-        "linter": "eslint",
-        "strict": true
-      }
-    }
-  },
-  "defaultProject": "web-ui"
+  }
 }

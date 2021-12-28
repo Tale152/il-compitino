@@ -14,7 +14,8 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "parallel": 1
       }
     }
   },
@@ -26,22 +27,26 @@
       }
     ]
   },
-  "projects": {
-    "api": {
-      "tags": []
-    },
-    "dtos": {
-      "tags": []
-    },
-    "server-in-memory-store": {
-      "tags": []
-    },
-    "web-ui": {
-      "tags": []
-    },
-    "web-ui-e2e": {
-      "tags": [],
-      "implicitDependencies": ["web-ui"]
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint",
+        "strict": true,
+        "babel": true
+      },
+      "component": {
+        "style": "styled-components"
+      },
+      "library": {
+        "style": "styled-components",
+        "linter": "eslint",
+        "strict": true
+      }
     }
-  }
+  },
+  "defaultProject": "web-ui"
 }
