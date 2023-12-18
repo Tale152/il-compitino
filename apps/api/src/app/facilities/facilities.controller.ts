@@ -25,8 +25,8 @@ export class FacilitiesController {
     const oldFat =
       this.facilitiesService.facilitiesStore.findOneOrFail(facilityId);
     const newFat = {
-      ...dataToUpdate,
       ...oldFat,
+      ...dataToUpdate,
     };
     this.facilitiesService.facilitiesStore.set(facilityId, newFat);
     return newFat;
