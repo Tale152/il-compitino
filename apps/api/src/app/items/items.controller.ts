@@ -49,8 +49,8 @@ export class ItemsController {
   ): ItemDto {
     const oldItem = this.itemsService.itemsStore.findOneOrFail(itemId);
     const newItem = {
-      ...dataToUpdate,
       ...oldItem,
+      ...dataToUpdate,
     };
     this.itemsService.itemsStore.set(itemId, newItem);
     return newItem;
