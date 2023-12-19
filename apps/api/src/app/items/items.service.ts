@@ -33,6 +33,29 @@ export class ItemService {
       .reduce((accumulator, facilityHasIt) => (accumulator || facilityHasIt), false)
   }
 
+  moveToAnotherFacility(
+    sourceFacility: FacilityDto, destinationFacility: FacilityDto, item: ItemDto
+  ){
+    const sourceItemList = this.itemsFacilitiesPivotStore.findOneOrFail(
+      sourceFacility.facilityId
+    );
+    const sourceItemListFiltered = sourceItemList.filter(
+      sourceItemId => sourceItemId !== item.itemId
+    );
+    if(sourceItemList.length > sourceItemListFiltered.length){
+      const destinationItemList = this.itemsFacilitiesPivotStore.findOneOrElse(
+        destinationFacility.facilityId, []
+      );
+      if(!destinationItemList.includes(item.itemId)){
+        this.itemsFacilitiesPivotStore.set(sourceFacility.facilityId, sourceItemListFiltered);
+        this.itemsFacilitiesPivotStore.set(destinationFacility.facilityId, [
+          ...destinationItemList,
+          item.itemId
+        ])
+      }
+    }
+  }
+
   deleteItem(item: ItemDto) {
     this.itemsFacilitiesPivotStore.map((list) =>
       list.filter((itemId) => itemId !== item.itemId)
