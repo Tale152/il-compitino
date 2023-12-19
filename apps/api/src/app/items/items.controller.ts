@@ -67,6 +67,20 @@ export class ItemsController {
     this.itemsService.moveInto(facility, item);
   }
 
+  @Put('/move/:itemId/from/:sourceFacilityId/to/:destinationFacilityId')
+  moveFromSourceFacilityToDestinationFacility(
+    @Param('itemId') itemId: string,
+    @Param('sourceFacilityId') sourceFacilityId: string,
+    @Param('destinationFacilityId') destinationFacilityId: string
+  ) {
+    const item = this.itemsService.itemsStore.findOneOrFail(itemId);
+    const sourceFacility =
+      this.facilitiesService.facilitiesStore.findOneOrFail(sourceFacilityId);
+    const destinationFacility =
+      this.facilitiesService.facilitiesStore.findOneOrFail(destinationFacilityId);
+    this.itemsService.moveToAnotherFacility(sourceFacility, destinationFacility, item);
+  }
+
   @Delete('/:itemId')
   deleteItem(@Param('itemId') itemId: string) {
     const item = this.itemsService.itemsStore.findOneOrFail(itemId);
