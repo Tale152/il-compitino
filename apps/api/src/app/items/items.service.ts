@@ -15,18 +15,22 @@ export class ItemService {
   ) {}
 
   moveInto(facility: FacilityDto, item: ItemDto) {
-    const itemList = this.itemsFacilitiesPivotStore.findOneOrFail(
-      facility.facilityId
-    );
-    this.itemsFacilitiesPivotStore.map((list) =>
-      list.filter((itemId) => itemId !== item.itemId)
-    );
-    if (!itemList.includes(item.itemId)) {
+    if(!this.isAlreadyStoredInAFacility(item)){
+      const itemList = this.itemsFacilitiesPivotStore.findOneOrElse(
+        facility.facilityId, []
+      );
       this.itemsFacilitiesPivotStore.set(facility.facilityId, [
         ...itemList,
         item.itemId,
       ]);
     }
+  }
+
+  isAlreadyStoredInAFacility(item: ItemDto){
+    return this.itemsFacilitiesPivotStore
+      .findAll()
+      .map((itemList) => itemList.includes(item.itemId))
+      .reduce((accumulator, facilityHasIt) => (accumulator || facilityHasIt), false)
   }
 
   deleteItem(item: ItemDto) {
