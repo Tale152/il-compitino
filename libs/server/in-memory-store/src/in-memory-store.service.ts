@@ -27,6 +27,11 @@ export class InMemoryStoreService<DataType> {
     throw new NotFoundError(key);
   }
 
+  findOneOrElse(key: string, defaultValue: DataType){
+    const res = this.findOne(key);
+    return res == null ? defaultValue : res;
+  }
+
   set(key: string, data: DataType) {
     this.store.set(key, data);
   }
